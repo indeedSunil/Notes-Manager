@@ -1,1 +1,0 @@
- scanf(" %[^\n]", note); // Note the space before %[^\n]
