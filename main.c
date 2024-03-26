@@ -19,9 +19,7 @@ char getRealId[50];
 void gimmickLoadingScreen()
 {
     // making a gimmick loading screen for 3 seconds using for loops and sleep function
-    printf("Loading in 3...\n");
-    sleep(1);
-    system("clear");
+   
     printf("Loading in 2...\n");
     sleep(1);
     system("clear");
@@ -141,6 +139,7 @@ int addNote(char *id)
     char note[1000];
     printf("Enter the note: \n");
     printf("You can enter multiple lines of notes\n");
+    printf("Enter !q to save the note\n");
     printf("........................................\n");
     // take multi line input from the user
     while (fgets(note, 1000, stdin) != NULL)
@@ -148,7 +147,7 @@ int addNote(char *id)
 
         if (strcmp(note, "!q\n") == 0)
         {
-
+            printf("Note added successfully\n");
             break;
         }
 
@@ -370,9 +369,7 @@ int main()
         switch (choice)
         {
         case 1:
- printf("Redirecting to registration screen in 3...\n");
-                sleep(1);
-                system("clear");
+
                 printf("Redirecting to registration screen in 2..\n");
                 sleep(1);
                 system("clear");
@@ -381,10 +378,12 @@ int main()
                 system("clear");
             if (registerUser() == 1)
             {
+                system("clear");
                 printf("--------------------------------\n ");
 
                 printf("User registered successfully\n");
-                goto end;
+                
+                goto start;
             }
             else
             {
@@ -392,9 +391,7 @@ int main()
 
                 printf("User registration failed \n");
                 // gimmicking the login screen for 3 seconds
-                printf("Redirecting to login screen in 3...\n");
-                sleep(1);
-                system("clear");
+               
                 printf("Redirecting to login screen in 2..\n");
                 sleep(1);
                 system("clear");
@@ -428,9 +425,7 @@ int main()
                 printf("---------------------------\n");
 
                 // gimmicking the login screen for 3 seconds
-                printf("Redirecting to login screen in 3...\n");
-                sleep(1);
-                system("clear");
+               
                 printf("User registration failed \n");
                 printf("---------------------------\n");
                 printf("Redirecting to login screen in 2..\n");
@@ -455,9 +450,7 @@ int main()
         case 3:
             // exiting the program
             // gimmick exiting program screen for 3 2 1 seconds
-            printf("Exiting in 3...\n");
-            sleep(1);
-            system("clear");
+          
             printf("Exiting in 2..\n");
             sleep(1);
             system("clear");
