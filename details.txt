@@ -1,10 +1,2 @@
 Id   Name   Password
 
-
-sunil	Sunil	Lamichhane
-bittu	sunil	sunil
-hello	hello	hello
-makes	maked	points
-syam	syam	syam
-term	term	term
-suni'	suni	suni

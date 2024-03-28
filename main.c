@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-#include <stdlib.h>
+#include <stdlib.h> 
 #include <sys/stat.h> //for making directories
 #include <dirent.h>   //for listing files in a directory
 #include <errno.h>    //for error handling
@@ -542,3 +542,5 @@ menuscreen:
 end:
     return 0;
 }
+
+//this is end of the program
