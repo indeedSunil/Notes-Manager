@@ -586,7 +586,13 @@ int postLogin()
         else if (choice == 5)
         {
             system("clear");
-            break;
+            printf("Logging out in 2..\n");
+            sleep(1);
+           
+            printf("Logging out in 1.\n");
+            sleep(1);
+            
+            main();
         }
         else
         {
@@ -605,7 +611,7 @@ int main()
 
         printf("--------------------------------\n ");
         printf("Welcome to Notes Manager\n");
-        printf("------------------------------\n");
+        printf("--------------------------------\n");
 
         printf("1. Register\n");
         printf("2. Login\n");
