@@ -8,7 +8,7 @@
 #include <unistd.h>   // Include the header file for ftruncate
 #include <sys/types.h>
 
-#define MAX_LINE_SIZE 100
+#define MAX_LINE_SIZE 10000
 struct userDetails
 {
     char id[50], name[50], password[50];
@@ -87,7 +87,9 @@ int registerUser()
 }
 int signInUser()
 {
-
+     printf("-------------------\n");
+    printf("Login Page\n");
+    printf("-------------------\n");
     char id[50], password[50];
     printf("Enter id: ");
     scanf(" %[^\n]s", id);
@@ -123,7 +125,7 @@ int addNote(char *id)
 
     // the name of the note file will be asked from the user
     char noteName[50];
-    printf("Enter the name of the note(without spaces): ");
+    printf("Enter the name of the note: ");
     scanf(" %[^\n]s", noteName);
     strcat(path, "/");
     strcat(path, noteName);
@@ -137,9 +139,8 @@ int addNote(char *id)
     }
 
     char note[1000];
-    printf("Enter the note: \n");
-    printf("You can enter multiple lines of notes\n");
-    printf("Enter !q to save the note\n");
+    printf("Enter your notes below: \n\n");
+       printf("Enter !q to save the note\n");
     printf("........................................\n");
     // take multi line input from the user
     while (fgets(note, 1000, stdin) != NULL)
@@ -147,7 +148,7 @@ int addNote(char *id)
 
         if (strcmp(note, "!q\n") == 0)
         {
-            printf("Note added successfully\n");
+           
             break;
         }
 
@@ -179,7 +180,6 @@ int addNote(char *id)
 }
 int viewNotes(char *id)
 {
-
     // here we are going to view the notes of the user based on his id
     DIR *dir;
     struct dirent *ent;
@@ -203,19 +203,24 @@ int viewNotes(char *id)
         return 0;
     }
 
-    // asking the user if he wants to edit any .txt file or not
-    char noteName[50];
+    // asking the user if he wants to view any .txt file or not
+    char noteName[50],displayNoteName[50];
+     
     printf("Enter the name of the note you want to view: ");
     scanf(" %[^\n]s", noteName);
+    strcpy(displayNoteName,noteName);
     strcat(path, "/");
     strcat(path, noteName);
-
+    strcat(path, ".txt");
+    
     FILE *fp = fopen(path, "r");
     if (fp == NULL)
     {
         printf("File not found\n");
         return 0;
     }
+    system("clear");
+    printf("%s\n\n", displayNoteName);
     printf("........................................\n");
     char line[MAX_LINE_SIZE];
     while (fgets(line, MAX_LINE_SIZE, fp) != NULL)
@@ -224,9 +229,20 @@ int viewNotes(char *id)
     }
     printf("\n........................................\n");
 
-    fclose(fp);
+    //returning 1 only if user enter back or Back or BACK other wise showing the note and then returning 0
 
-    return 1;
+    char back[10];
+    printf("\n\nEnter back to go back: ");
+    scanf(" %[^\n]s", back);
+    if (strcmp(back, "back") == 0 || strcmp(back, "Back") == 0 || strcmp(back, "BACK") == 0)
+    {
+        fclose(fp);
+        return 1;
+    }
+
+    return 0;
+
+   
 }
 int DeleteNotes(char *id)
 {
@@ -255,14 +271,26 @@ int DeleteNotes(char *id)
     }
 
     // asking the user to the file that he wants to delete
-    char noteName[50];
+    char noteName[50],displayNoteName[50];
     printf("Enter the name of the note you want to delete: ");
     scanf(" %[^\n]s", noteName);
-    // now deleting the  file that user entered
+    strcpy(displayNoteName,noteName);
+    //checking the file that user entered exists or not
     strcat(path, "/");
     strcat(path, noteName);
+    strcat(path, ".txt");
+    FILE *fp = fopen(path, "r");
+    if (fp == NULL)
+    {
+        printf("File not found\n");
+        return 0;
+    }
+
+    
+    // now deleting the  file that user entered
+   
     remove(path);
-    printf("Note deleted successfully\n");
+    printf(" %s : Note deleted successfully\n",displayNoteName);
 
     return 1;
 }
@@ -291,17 +319,21 @@ int editNotes(char *id)
     }
 
     // asking the user if he wants to edit any .txt file or not
-    char noteName[50];
+    char noteName[50],displayNoteName[50];
     printf("Enter the name of the note you want to edit: ");
     scanf(" %[^\n]s", noteName);
+    strcpy(displayNoteName,noteName);
     strcat(path, "/");
     strcat(path, noteName);
+    strcat(path, ".txt");
     FILE *fp = fopen(path, "r");
     if (fp == NULL)
     {
         printf("File not found\n");
         return 0;
     }
+    system("clear");
+    printf("%s\n\n", displayNoteName);
     printf("........................................\n");
     // he will be shown the content of the file and then he can edit the file
     char line[MAX_LINE_SIZE];
@@ -319,7 +351,8 @@ int editNotes(char *id)
         return 0;
     }
     char note[1000];
-    printf("Enter the edit to the note: \n");
+    printf("Enter the edit to the note: \n\n");
+    printf("Enter !q to save the note\n");
 
     printf("........................................\n");
     // take multi line input from the user
@@ -327,7 +360,8 @@ int editNotes(char *id)
     {
 
         if (strcmp(note, "!q\n") == 0)
-        {
+        { 
+            
             break;
         }
 
@@ -344,6 +378,7 @@ int editNotes(char *id)
         fflush(fp); // Flush the file buffer to ensure the data is written immediately
     }
     fclose(fp); // Close the file after writing
+    return 1;
 }
 
 int postLogin()
@@ -358,10 +393,10 @@ int postLogin()
         printf("--------------------------------\n ");
 
         printf("1. Add Note\n");
-        printf("2. View Notes\n");
-        printf("3. Edit Notes\n");
-        printf("4. Delete Notes\n");
-        printf("5. Back to Login Screen\n");
+        printf(" 2. View Notes\n");
+        printf(" 3. Edit Notes\n");
+        printf(" 4. Delete Notes\n");
+        printf(" 5. Back to Login Screen\n");
         printf("--------------------------------\n ");
 
         int choice;
@@ -384,7 +419,7 @@ int postLogin()
             if (addNote(getRealId) == 1)
             {
                 system("clear");
-                printf("--------------------------------\n ");
+                
                 printf("Note added successfully\n");
                 sleep(1);
                 system("clear");
@@ -428,15 +463,15 @@ int postLogin()
             if (viewNotes(getRealId) == 1)
             {
                 system("clear");
-                printf("--------------------------------\n ");
+               
                 printf("Note viewed successfully\n");
                 sleep(1);
                 system("clear");
 
-                printf("Redirecting to post login screen in 2..\n");
+                printf("Redirecting to Post login screen in 2..\n");
                 sleep(1);
                 system("clear");
-                printf("Redirecting to post  login screen in 1.\n");
+                printf("Redirecting to Post login screen in 1.\n");
                 sleep(1);
                 system("clear");
                 postLogin();
@@ -445,13 +480,15 @@ int postLogin()
             else
             {
                 system("clear");
-                printf("Note view failed \n");
-                sleep(1);
-
-                printf("Redirecting to post login screen in 2..\n");
+                printf("\nNote view failed \n");
+                printf("You entered the wrong note name or the note does not exist\n");
                 sleep(1);
                 system("clear");
-                printf("Redirecting to post login screen in 1.\n");
+
+                printf("Redirecting to Post login screen in 2..\n");
+                sleep(1);
+                system("clear");
+                printf("Redirecting to Post login screen in 1.\n");
                 sleep(1);
                 system("clear");
                 postLogin();
@@ -472,15 +509,15 @@ int postLogin()
             if (editNotes(getRealId) == 1)
             {
                 system("clear");
-                printf("--------------------------------\n ");
+                
                 printf("Note edited successfully\n");
                 sleep(1);
                 system("clear");
 
-                printf("Redirecting to post login screen in 2..\n");
+                printf("Redirecting to Post login screen in 2..\n");
                 sleep(1);
                 system("clear");
-                printf("Redirecting to post  login screen in 1.\n");
+                printf("Redirecting to Post login screen in 1.\n");
                 sleep(1);
                 system("clear");
                 postLogin();
@@ -492,10 +529,10 @@ int postLogin()
                 printf("Note edit failed \n");
                 sleep(1);
 
-                printf("Redirecting to post login screen in 2..\n");
+                printf("Redirecting to Post login screen in 2..\n");
                 sleep(1);
                 system("clear");
-                printf("Redirecting to post login screen in 1.\n");
+                printf("Redirecting to Post login screen in 1.\n");
                 sleep(1);
                 system("clear");
                 postLogin();
@@ -516,15 +553,15 @@ int postLogin()
             if (DeleteNotes(getRealId) == 1)
             {
                 system("clear");
-                printf("--------------------------------\n ");
+               
                 printf("Note deleted successfully\n");
                 sleep(1);
                 system("clear");
 
-                printf("Redirecting to post login screen in 2..\n");
+                printf("Redirecting to Post login screen in 2..\n");
                 sleep(1);
                 system("clear");
-                printf("Redirecting to post  login screen in 1.\n");
+                printf("Redirecting to Post login screen in 1.\n");
                 sleep(1);
                 system("clear");
                 postLogin();
@@ -595,7 +632,7 @@ int main()
             if (registerUser() == 1)
             {
                 system("clear");
-                printf("--------------------------------\n ");
+               
                 printf("User registered successfully\n");
                 sleep(1);
                 system("clear");
@@ -640,7 +677,7 @@ int main()
             if (signInUser() == 1)
             {
                 system("clear");
-                printf("--------------------------------\n ");
+               
                 printf("User login successfully\n");
                 sleep(1);
                 system("clear");
@@ -650,7 +687,7 @@ int main()
                 printf("Redirecting to post login screen in 2..\n");
                 sleep(1);
                 system("clear");
-                printf("Redirecting to post  login screen in 1.\n");
+                printf("Redirecting to post login screen in 1.\n");
                 sleep(1);
                 system("clear");
 
@@ -696,4 +733,3 @@ int main()
     return 0;
 }
 
-//this is end of the program
