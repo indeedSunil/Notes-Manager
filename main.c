@@ -105,7 +105,8 @@ int signInUser()
     struct userDetails user;
     while (fgets(line, MAX_LINE_SIZE, fp) != NULL)
     {
-        sscanf(line, "%s\t%s\t%s", user.id, user.name, user.password);
+        sscanf(line, "%s\t%s\t\%s", user.id, user.name, user.password);
+        //
         if (strcmp(user.id, id) == 0 && strcmp(user.password, password) == 0)
         {
 
@@ -658,6 +659,7 @@ int main()
 
                 printf("User registration failed \n");
                 sleep(1);
+                system("clear");    
                 // gimmicking the login screen for 3 seconds
 
                 printf("Redirecting to login screen in 2..\n");
@@ -703,18 +705,18 @@ int main()
             else
             {
                 system("clear");
-                printf("User registration failed \n");
-                printf("---------------------------\n");
+                printf("User login failed: Invalid Credentials \n");
+                sleep(1);
 
                 // gimmicking the login screen for 3 seconds
 
-                printf("User registration failed \n");
-                printf("---------------------------\n");
+                
+                system("clear");
                 printf("Redirecting to login screen in 2..\n");
                 sleep(1);
                 system("clear");
-                printf("User registration failed \n");
-                printf("---------------------------\n");
+                
+                
                 printf("Redirecting to login screen in 1.\n");
                 sleep(1);
                 system("clear");
