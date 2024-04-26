@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-#include <stdlib.h> 
+#include <stdlib.h>
 #include <sys/stat.h> //for making directories
 #include <dirent.h>   //for listing files in a directory
 #include <errno.h>    //for error handling
@@ -16,17 +16,6 @@ struct userDetails
 char getRealName[50];
 char getRealId[50];
 
-void gimmickLoadingScreen()
-{
-    // making a gimmick loading screen for 3 seconds using for loops and sleep function
-   
-    printf("Loading in 2...\n");
-    sleep(1);
-    system("clear");
-    printf("Loading in 1...\n");
-    sleep(1);
-    system("clear");
-}
 int checker(char *id)
 {
     FILE *fp = fopen("details.txt", "r");
@@ -59,9 +48,9 @@ int registerUser()
     printf("Enter id: ");
     scanf(" %[^\n]s", id);
     printf("Enter name: ");
-    scanf(" %[^\n]s", name);
+    scanf("%s", name);
     printf("Enter password: ");
-    scanf(" %[^\n]s", password);
+    scanf("%s", password);
 
     FILE *fp = fopen("details.txt", "a");
     if (fp == NULL)
@@ -90,9 +79,9 @@ int signInUser()
 
     char id[50], password[50];
     printf("Enter id: ");
-    scanf(" %[^\n]s", id);
+    scanf("%s", id);
     printf("Enter password: ");
-    scanf(" %[^\n]s", password);
+    scanf("%s", password);
     FILE *fp = fopen("details.txt", "r");
     if (fp == NULL)
     {
@@ -124,7 +113,7 @@ int addNote(char *id)
     // the name of the note file will be asked from the user
     char noteName[50];
     printf("Enter the name of the note(without spaces): ");
-    scanf(" %[^\n]s", noteName);
+    scanf("%s", noteName);
     strcat(path, "/");
     strcat(path, noteName);
     char extension[5] = ".txt";
@@ -206,7 +195,7 @@ int viewNotes(char *id)
     // asking the user if he wants to edit any .txt file or not
     char noteName[50];
     printf("Enter the name of the note you want to view: ");
-    scanf(" %[^\n]s", noteName);
+    scanf("%s", noteName);
     strcat(path, "/");
     strcat(path, noteName);
 
@@ -257,7 +246,7 @@ int DeleteNotes(char *id)
     // asking the user to the file that he wants to delete
     char noteName[50];
     printf("Enter the name of the note you want to delete: ");
-    scanf(" %[^\n]s", noteName);
+    scanf("%s", noteName);
     // now deleting the  file that user entered
     strcat(path, "/");
     strcat(path, noteName);
@@ -293,7 +282,7 @@ int editNotes(char *id)
     // asking the user if he wants to edit any .txt file or not
     char noteName[50];
     printf("Enter the name of the note you want to edit: ");
-    scanf(" %[^\n]s", noteName);
+    scanf("%s", noteName);
     strcat(path, "/");
     strcat(path, noteName);
     FILE *fp = fopen(path, "r");
@@ -345,7 +334,6 @@ int editNotes(char *id)
     }
     fclose(fp); // Close the file after writing
 }
-
 int postLogin()
 {
 
@@ -395,7 +383,6 @@ int postLogin()
                 printf("Redirecting to main screen in 1.\n");
                 sleep(1);
                 system("clear");
-                postLogin();
             }
             else
             {
@@ -409,8 +396,6 @@ int postLogin()
                 printf("Redirecting to main screen in 1.\n");
                 sleep(1);
                 system("clear");
-                postLogin();
-
             }
         }
 
@@ -439,8 +424,6 @@ int postLogin()
                 printf("Redirecting to post  login screen in 1.\n");
                 sleep(1);
                 system("clear");
-                postLogin();
-
             }
             else
             {
@@ -454,8 +437,6 @@ int postLogin()
                 printf("Redirecting to post login screen in 1.\n");
                 sleep(1);
                 system("clear");
-                postLogin();
-
             }
         }
         else if (choice == 3)
@@ -483,8 +464,6 @@ int postLogin()
                 printf("Redirecting to post  login screen in 1.\n");
                 sleep(1);
                 system("clear");
-                postLogin();
-
             }
             else
             {
@@ -498,8 +477,6 @@ int postLogin()
                 printf("Redirecting to post login screen in 1.\n");
                 sleep(1);
                 system("clear");
-                postLogin();
-
             }
         }
         else if (choice == 4)
@@ -527,8 +504,6 @@ int postLogin()
                 printf("Redirecting to post  login screen in 1.\n");
                 sleep(1);
                 system("clear");
-                postLogin();
-
             }
             else
             {
@@ -542,8 +517,6 @@ int postLogin()
                 printf("Redirecting to post login screen in 1.\n");
                 sleep(1);
                 system("clear");
-                postLogin();
-
             }
         }
         else if (choice == 5)
@@ -558,11 +531,11 @@ int postLogin()
     }
     return 1;
 }
+
 int main()
 {
-
-  
-   while (1)
+    // infinite while loop: so that the user can login again and again
+    while (1)
     {
         // code for login screen
 
@@ -693,7 +666,6 @@ int main()
             printf("Invalid choice\n");
         }
     }
-    return 0;
-}
 
-//this is end of the program
+    return 1;
+}

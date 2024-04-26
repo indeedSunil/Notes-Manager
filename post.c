@@ -57,11 +57,11 @@ int registerUser()
 
     char id[50], name[50], password[50];
     printf("Enter id: ");
-    scanf(" %[^\n]s", id);
+    scanf("%s", id);
     printf("Enter name: ");
-    scanf(" %[^\n]s", name);
+    scanf("%s", name);
     printf("Enter password: ");
-    scanf(" %[^\n]s", password);
+    scanf("%s", password);
 
     FILE *fp = fopen("details.txt", "a");
     if (fp == NULL)
@@ -90,9 +90,9 @@ int signInUser()
 
     char id[50], password[50];
     printf("Enter id: ");
-    scanf(" %[^\n]s", id);
+    scanf("%s", id);
     printf("Enter password: ");
-    scanf(" %[^\n]s", password);
+    scanf("%s", password);
     FILE *fp = fopen("details.txt", "r");
     if (fp == NULL)
     {
@@ -124,7 +124,7 @@ int addNote(char *id)
     // the name of the note file will be asked from the user
     char noteName[50];
     printf("Enter the name of the note(without spaces): ");
-    scanf(" %[^\n]s", noteName);
+    scanf("%s", noteName);
     strcat(path, "/");
     strcat(path, noteName);
     char extension[5] = ".txt";
@@ -206,7 +206,7 @@ int viewNotes(char *id)
     // asking the user if he wants to edit any .txt file or not
     char noteName[50];
     printf("Enter the name of the note you want to view: ");
-    scanf(" %[^\n]s", noteName);
+    scanf("%s", noteName);
     strcat(path, "/");
     strcat(path, noteName);
 
@@ -257,7 +257,7 @@ int DeleteNotes(char *id)
     // asking the user to the file that he wants to delete
     char noteName[50];
     printf("Enter the name of the note you want to delete: ");
-    scanf(" %[^\n]s", noteName);
+    scanf("%s", noteName);
     // now deleting the  file that user entered
     strcat(path, "/");
     strcat(path, noteName);
@@ -293,7 +293,7 @@ int editNotes(char *id)
     // asking the user if he wants to edit any .txt file or not
     char noteName[50];
     printf("Enter the name of the note you want to edit: ");
-    scanf(" %[^\n]s", noteName);
+    scanf("%s", noteName);
     strcat(path, "/");
     strcat(path, noteName);
     FILE *fp = fopen(path, "r");
@@ -345,227 +345,14 @@ int editNotes(char *id)
     }
     fclose(fp); // Close the file after writing
 }
-
-int postLogin()
-{
-
-    // this is the post login screen inside infinite while loop
-    //  so that the user can do multiple tasks
-    while (1)
-    {
-        system("clear");
-        printf("\n Hi, %s\n", getRealName);
-        printf("--------------------------------\n ");
-
-        printf("1. Add Note\n");
-        printf("2. View Notes\n");
-        printf("3. Edit Notes\n");
-        printf("4. Delete Notes\n");
-        printf("5. Back to Login Screen\n");
-        printf("--------------------------------\n ");
-
-        int choice;
-        printf("Enter your choice: ");
-        scanf("%d", &choice);
-        system("clear");
-
-        // based on the choice selecting functions to do that taskk.
-        if (choice == 1)
-        {
-            printf("Redirecting to Add Note screen in 2..\n");
-            sleep(1);
-            system("clear");
-            printf("Redirecting to Add Note screen in 1.\n");
-            sleep(1);
-            system("clear");
-
-            // passing to add note function
-
-            if (addNote(getRealId) == 1)
-            {
-                system("clear");
-                printf("--------------------------------\n ");
-                printf("Note added successfully\n");
-                sleep(1);
-                system("clear");
-
-                printf("Redirecting to main screen in 2..\n");
-                sleep(1);
-                system("clear");
-                printf("Redirecting to main screen in 1.\n");
-                sleep(1);
-                system("clear");
-                postLogin();
-            }
-            else
-            {
-                system("clear");
-                printf("Note addition failed \n");
-                sleep(1);
-
-                printf("Redirecting to main screen in 2..\n");
-                sleep(1);
-                system("clear");
-                printf("Redirecting to main screen in 1.\n");
-                sleep(1);
-                system("clear");
-                postLogin();
-
-            }
-        }
-
-        else if (choice == 2)
-        {
-            printf("Redirecting to View Note screen in 2..\n");
-            sleep(1);
-            system("clear");
-            printf("Redirecting to View Note screen in 1.\n");
-            sleep(1);
-            system("clear");
-
-            // passing to view note function
-
-            if (viewNotes(getRealId) == 1)
-            {
-                system("clear");
-                printf("--------------------------------\n ");
-                printf("Note viewed successfully\n");
-                sleep(1);
-                system("clear");
-
-                printf("Redirecting to post login screen in 2..\n");
-                sleep(1);
-                system("clear");
-                printf("Redirecting to post  login screen in 1.\n");
-                sleep(1);
-                system("clear");
-                postLogin();
-
-            }
-            else
-            {
-                system("clear");
-                printf("Note view failed \n");
-                sleep(1);
-
-                printf("Redirecting to post login screen in 2..\n");
-                sleep(1);
-                system("clear");
-                printf("Redirecting to post login screen in 1.\n");
-                sleep(1);
-                system("clear");
-                postLogin();
-
-            }
-        }
-        else if (choice == 3)
-        {
-            printf("Redirecting to Edit Note screen in 2..\n");
-            sleep(1);
-            system("clear");
-            printf("Redirecting to Edit Note screen in 1.\n");
-            sleep(1);
-            system("clear");
-
-            // passing to edit note function
-
-            if (editNotes(getRealId) == 1)
-            {
-                system("clear");
-                printf("--------------------------------\n ");
-                printf("Note edited successfully\n");
-                sleep(1);
-                system("clear");
-
-                printf("Redirecting to post login screen in 2..\n");
-                sleep(1);
-                system("clear");
-                printf("Redirecting to post  login screen in 1.\n");
-                sleep(1);
-                system("clear");
-                postLogin();
-
-            }
-            else
-            {
-                system("clear");
-                printf("Note edit failed \n");
-                sleep(1);
-
-                printf("Redirecting to post login screen in 2..\n");
-                sleep(1);
-                system("clear");
-                printf("Redirecting to post login screen in 1.\n");
-                sleep(1);
-                system("clear");
-                postLogin();
-
-            }
-        }
-        else if (choice == 4)
-        {
-            printf("Redirecting to Delete Note screen in 2..\n");
-            sleep(1);
-            system("clear");
-            printf("Redirecting to Delete Note screen in 1.\n");
-            sleep(1);
-            system("clear");
-
-            // passing to delete note function
-
-            if (DeleteNotes(getRealId) == 1)
-            {
-                system("clear");
-                printf("--------------------------------\n ");
-                printf("Note deleted successfully\n");
-                sleep(1);
-                system("clear");
-
-                printf("Redirecting to post login screen in 2..\n");
-                sleep(1);
-                system("clear");
-                printf("Redirecting to post  login screen in 1.\n");
-                sleep(1);
-                system("clear");
-                postLogin();
-
-            }
-            else
-            {
-                system("clear");
-                printf("Note delete failed \n");
-                sleep(1);
-
-                printf("Redirecting to post login screen in 2..\n");
-                sleep(1);
-                system("clear");
-                printf("Redirecting to post login screen in 1.\n");
-                sleep(1);
-                system("clear");
-                postLogin();
-
-            }
-        }
-        else if (choice == 5)
-        {
-            system("clear");
-            break;
-        }
-        else
-        {
-            printf("Invalid choice\n");
-        }
-    }
-    return 1;
-}
 int main()
 {
 
-  
-   while (1)
+    // code for login screen
     {
-        // code for login screen
-
+    // putting the login screen in infinite loop so that the user can login again and again
+    //  if he enters wrong credentials
+    start:
         printf("--------------------------------\n ");
         printf("Welcome to Notes Manager\n");
         printf("------------------------------\n");
@@ -579,83 +366,57 @@ int main()
         printf("Enter your choice: ");
         scanf("%d", &choice);
         system("clear");
-
-        // if user enter 1 then he will be redirected to registration screen
-        if (choice == 1)
+        switch (choice)
         {
-            printf("Redirecting to registration screen in 2..\n");
-            sleep(1);
-            system("clear");
-            printf("Redirecting to registration screen in 1.\n");
-            sleep(1);
-            system("clear");
+        case 1:
 
-            // passing to register user function
-            int registerUser();
+                printf("Redirecting to registration screen in 2..\n");
+                sleep(1);
+                system("clear");
+                printf("Redirecting to registration screen in 1.\n");
+                sleep(1);
+                system("clear");
             if (registerUser() == 1)
             {
                 system("clear");
                 printf("--------------------------------\n ");
-                printf("User registered successfully\n");
-                sleep(1);
-                system("clear");
 
-                // after the user is successfully registered he will be redirected to login screen
-                //  gimmicking the login screen for 3 seconds
-                printf("Redirecting to login screen in 2..\n");
-                sleep(1);
-                system("clear");
-                printf("Redirecting to login screen in 1.\n");
-                sleep(1);
-                system("clear");
+                printf("User registered successfully\n");
+                
+                goto start;
             }
             else
             {
                 system("clear");
 
                 printf("User registration failed \n");
-                sleep(1);
                 // gimmicking the login screen for 3 seconds
-
+               
                 printf("Redirecting to login screen in 2..\n");
                 sleep(1);
                 system("clear");
                 printf("Redirecting to login screen in 1.\n");
                 sleep(1);
                 system("clear");
+
+                
+
+                goto start;
+                return 0;
             }
-        }
-        else if (choice == 2)
-        {
-            printf("Redirecting to login screen in 2..\n");
-            sleep(1);
-            system("clear");
-            printf("Redirecting to login screen in 1.\n");
-            sleep(1);
+            break;
+        case 2:
+            gimmickLoadingScreen();
+
             system("clear");
 
-            int signInUser();
+            printf("Login Page\n");
+            printf("-----------------\n");
 
-            // passing to login user function
             if (signInUser() == 1)
             {
-                system("clear");
-                printf("--------------------------------\n ");
-                printf("User login successfully\n");
-                sleep(1);
-                system("clear");
-
-                // after the user is successfully registered he will be redirected to login screen
-                //  gimmicking the login screen for 3 seconds
-                printf("Redirecting to post login screen in 2..\n");
-                sleep(1);
-                system("clear");
-                printf("Redirecting to post  login screen in 1.\n");
-                sleep(1);
-                system("clear");
-
-                int postLogin();
-                postLogin();
+                printf("\nUser logged in successfully\n");
+                goto menuscreen;
             }
             else
             {
@@ -664,7 +425,7 @@ int main()
                 printf("---------------------------\n");
 
                 // gimmicking the login screen for 3 seconds
-
+               
                 printf("User registration failed \n");
                 printf("---------------------------\n");
                 printf("Redirecting to login screen in 2..\n");
@@ -675,10 +436,21 @@ int main()
                 printf("Redirecting to login screen in 1.\n");
                 sleep(1);
                 system("clear");
+                
+
+                goto start;
+                // Add a return statement here to exit the switch case else this wont run and i dont why...
+                // so update on this : this return 0 deletes the menu function and the program exits.
+                return 0;
             }
-        }
-        else if (choice == 3)
-        {
+
+            system("clear");
+
+            break;
+        case 3:
+            // exiting the program
+            // gimmick exiting program screen for 3 2 1 seconds
+          
             printf("Exiting in 2..\n");
             sleep(1);
             system("clear");
@@ -686,13 +458,88 @@ int main()
             sleep(1);
             system("clear");
             sleep(1);
-            exit(0);
-        }
-        else
-        {
+            return 0;
+
+            break;
+        default:
             printf("Invalid choice\n");
+            break;
         }
     }
+// code for menu screen
+menuscreen:
+{
+    system("clear");
+    printf("\n Hi, %s\n", getRealName);
+    printf("--------------------------------\n ");
+
+    printf("1. Add Note\n");
+    printf("2. View Notes\n");
+    printf("3. Edit Notes\n");
+    printf("4. Delete Notes\n");
+    printf("5. Back to Login Screen\n");
+    printf("--------------------------------\n ");
+
+    int choice;
+    printf("Enter your choice: ");
+    scanf("%d", &choice);
+    system("clear");
+    // based on the choice selecting functions to do that taskk.
+    // Add function declaration for addNote
+
+    switch (choice)
+    {
+    case 1:
+        printf("Creating Note...\n");
+        sleep(1.5);
+        system ("clear");
+        printf("Add Note\n");
+        int addNote();
+        addNote(getRealId);
+
+        break;
+    case 2:
+    printf("Viewing Note...\n");
+        sleep(1.5);
+        system ("clear");
+
+        int viewNotes();
+        viewNotes(getRealId);
+
+        break;
+    case 3:
+    printf("Editing Note...\n");
+     sleep(1.5);
+        system ("clear");
+
+        int editNotes();
+        editNotes(getRealId);
+
+        break;
+    case 4:
+        printf("Deleting Note...\n");
+        sleep(1.5);
+        system ("clear");
+
+        int DeleteNotes();
+        DeleteNotes(getRealId);
+        break;
+    case 5:
+        system("clear");
+        printf("Redirecting to login screen in 2..\n");
+                sleep(1);
+                system("clear");
+                printf("Redirecting to login screen in 1.\n");
+                sleep(1);
+                system("clear");
+        goto start;
+        break;
+    default:
+        printf("Invalid choice\n");
+        break;
+    }
+}
+end:
     return 0;
 }
 
