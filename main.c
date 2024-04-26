@@ -591,7 +591,7 @@ int postLogin()
            
             printf("Logging out in 1.\n");
             sleep(1);
-            
+            int main();
             main();
         }
         else
