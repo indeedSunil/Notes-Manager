@@ -1,4 +1,4 @@
-**Notes-Manager System in C**
+## Notes-Manager  in C
 
 
 This repository contains a simple command-line note management system implemented in C. The system allows users to register, log in, and manage their notes efficiently. It provides functionality for adding, viewing, editing, and deleting notes within a user's directory.
@@ -50,4 +50,5 @@ This project was developed as part of a learning exercise in C programming. Spec
 
 For any inquiries or issues related to the project, please feel free to contact *sunillamichhanecodes@gmail.com*.
 
+*I know the code is not optimized, and not ideal. But who cares, it was for school project. But I have tried in making it as nice as I can*
 **Happy Note-Taking!**
