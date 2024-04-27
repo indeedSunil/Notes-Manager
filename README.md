@@ -9,6 +9,8 @@ This repository contains a simple command-line note management system implemente
 - **Note Management:** Users can add, view, edit, and delete notes from their personal directory.
 - **Basic Security:** User passwords are stored securely ( not much secure to be honest, it just stores in a text file...will apply encryption functionality later on) and basic error handling is implemented.
 
+**Flowchart**
+[[https://github.com/indeedSunil/Notes-Manager/blob/main/FinalFlowchart.png]]
 **How to Use:**
 
 1. **Clone the Repository:**
