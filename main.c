@@ -16,17 +16,7 @@ struct userDetails
 char getRealName[50];
 char getRealId[50];
 
-void gimmickLoadingScreen()
-{
-    // making a gimmick loading screen for 3 seconds using for loops and sleep function
-   
-    printf("Loading in 2...\n");
-    sleep(1);
-    system("clear");
-    printf("Loading in 1...\n");
-    sleep(1);
-    system("clear");
-}
+
 int checker(char *id)
 {
     FILE *fp = fopen("details.txt", "r");
@@ -592,6 +582,7 @@ int postLogin()
            
             printf("Logging out in 1.\n");
             sleep(1);
+            system("clear");
             int main();
             main();
         }
@@ -740,5 +731,4 @@ int main()
     }
     return 0;
 }
-
 
