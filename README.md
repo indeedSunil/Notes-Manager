@@ -7,7 +7,7 @@ This repository contains a simple command-line note management system implemente
 
 - **Registration and Login:** Users can register for a new account or log in to an existing account.
 - **Note Management:** Users can add, view, edit, and delete notes from their personal directory.
-- **Basic Security:** User passwords are stored securely, and basic error handling is implemented.
+- **Basic Security:** User passwords are stored securely ( not much secure to be honest, it just stores in a text file...will apply encryption functionality later on) and basic error handling is implemented.
 
 **How to Use:**
 
