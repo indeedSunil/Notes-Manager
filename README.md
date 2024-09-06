@@ -21,7 +21,7 @@ This repository contains a simple command-line note management system implemente
 
 2. **Compile the Code:**
    ```
-   cd note-management-system
+   cd Notes-Manager
    gcc main.c -o notes
    ```
 
