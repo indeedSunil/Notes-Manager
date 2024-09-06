@@ -16,7 +16,7 @@ This repository contains a simple command-line note management system implemente
 
 1. **Clone the Repository:**
    ```
-   git clone https://github.com/your_username/note-management-system.git
+   git clone https://github.com/indeedSunil/Notes-Manager.git
    ```
 
 2. **Compile the Code:**
